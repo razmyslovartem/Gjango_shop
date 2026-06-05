@@ -20,5 +20,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('catalog/', include('blog.urls')),  # Подключаем пространство имён.
+    path("", include('catalog.urls')),  # Подключаем пространство имён.
 ]

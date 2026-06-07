@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Django_shop</title>
     <!-- Подключите статичеcкие файлы со стилями Bootstrap -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
@@ -101,5 +103,6 @@
 </div>
 
 <!-- Подключите статичеcкие файлы со скриптами Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

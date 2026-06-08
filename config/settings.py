@@ -76,15 +76,19 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+import os
+from dotenv import load_dotenv
+# Загружаем переменные окружения из файла .env
+load_dotenv()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',  # тип СУБД
-        'NAME': 'mydatabase',  # имя базы данных
-        'USER': 'mydatabaseuser',  # имя пользователя PostgreSQL
-        'PASSWORD': 'mypassword',  # пароль пользователя PostgreSQL
-        'HOST': 'localhost',  # адрес сервера базы данных
-        'PORT': '5432',  # порт, на котором работает PostgreSQL, обычно 5432
+        'NAME': os.getenv('DATABASE_NAME'),  # имя базы данных
+        'USER': os.getenv('DATABASE_USER'),  # имя пользователя PostgreSQL
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),  # пароль пользователя PostgreSQL
+        'HOST': os.getenv('DATABASE_HOST'),  # адрес сервера базы данных
+        'PORT': os.getenv('DATABASE_PORT', default='5432'),  # порт, на котором работает PostgreSQL, обычно 5432
     }
 }
 

@@ -73,7 +73,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # тип СУБД
+        'ENGINE': 'django.db.backends.postgresql',  # тип СУБД
         'NAME': os.getenv('NAME'),  # имя базы данных
         'USER': os.getenv('USER'),  # имя пользователя PostgreSQL
         'PASSWORD': os.getenv('PASSWORD'),  # пароль пользователя PostgreSQL

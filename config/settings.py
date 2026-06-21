@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.getenv('SECRET_KEY') == "True" else False
+DEBUG = True if os.getenv('DEBUG') == "True" else False
 
 ALLOWED_HOSTS = ['*']
 
@@ -74,11 +74,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # тип СУБД
-        'NAME': os.getenv('NAME'),  # имя базы данных
-        'USER': os.getenv('USER'),  # имя пользователя PostgreSQL
-        'PASSWORD': os.getenv('PASSWORD'),  # пароль пользователя PostgreSQL
-        'HOST': os.getenv('HOST'),  # адрес сервера базы данных
-        'PORT': os.getenv('PORT', default='5432'),  # порт, на котором работает PostgreSQL, обычно 5432
+        'NAME': os.getenv('DB_NAME'),  # имя базы данных
+        'USER': os.getenv('DB_USER'),  # имя пользователя PostgreSQL
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # пароль пользователя PostgreSQL
+        'HOST': os.getenv('DB_HOST'),  # адрес сервера базы данных
+        'PORT': os.getenv('DB_PORT', default='5432'),  # порт, на котором работает PostgreSQL, обычно 5432
     }
 }
 
@@ -120,8 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Папка со статическими файлами (CSS, JS, изображения для сайта)
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Папка, куда собираются все статические файлы для продакшена
 
+# MEDIA файлы (загрузки пользователей)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 

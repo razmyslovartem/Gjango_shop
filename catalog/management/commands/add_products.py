@@ -19,52 +19,79 @@ class Command(BaseCommand):
         # 1. Удаляем существующие данные.
         Product.objects.all().delete()
         Category.objects.all().delete()
+        self.stdout.write(self.style.SUCCESS('Данные очищены!'))
 
-        # 2.1. Создаём категорию электроники.
+        # 2 Создаём категории
+        self.stdout.write(self.style.WARNING('Создание категорий...'))
+
         electronics = Category.objects.create(
             name='Электроника',
             description='Гаджеты и техника'
         )
 
-        # 2.2. Создаём категорию одежды.
         clothing = Category.objects.create(
             name='Одежда',
             description='Одежда и модные аксессуары'
         )
 
-        # 3. Создаём-добавляем продукты в БД.
+        books = Category.objects.create(
+            name='Книги',
+            description='Художественная и учебная литература'
+        )
+
+        sport = Category.objects.create(
+            name='Спорт',
+            description='Спортивные товары и инвентарь'
+        )
+
+        self.stdout.write(self.style.SUCCESS(f'Создано {Category.objects.count()} категорий'))
+
+        # 3. Создаём продукты
+        self.stdout.write(self.style.WARNING('Создание продуктов...'))
+
         products = [
             {
                 'name': 'iPhone 15',
-                'details': 'Смартфон Apple',
+                'description': 'Смартфон Apple',
+                'image': '',
                 'category': electronics,
                 'price': 115000.00
             },
             {
                 'name': 'MacBook Pro',
-                'details': 'Ноутбук Apple',
+                'description': 'Ноутбук Apple',
+                'image': '',
                 'category': electronics,
                 'price': 250000.00
             },
             {
                 'name': 'Трико',
-                'details': 'Классические штаны',
+                'description': 'Классические штаны',
+                'image': '',
                 'category': clothing,
                 'price': 500.00
             },
             {
                 'name': 'Куртка Nike',
-                'details': 'Спортивная куртка',
+                'description': 'Спортивная куртка',
+                'image': '',
                 'category': clothing,
                 'price': 12000.00
             },
+            {
+                'name': 'Футбольный мяч',
+                'description': 'Кожаный мяч',
+                'image': '',
+                'category': sport,
+                'price': 2999.00
+            },
         ]
 
-        # Добавляем продукты через цикл с проверкой.
+    # Добавляем продукты через цикл с проверкой.
         for product_data in products:
-            # created => True(False) метод .get_or_create() так устроен.
+            # Используем get_or_create для избежания дубликатов
             product, created = Product.objects.get_or_create(**product_data)
-            # stdout.write - перехват в вывод терминала(ну и статус важности сообщения).
+
             if created:
                 self.stdout.write(
                     self.style.SUCCESS(f'Добавлен продукт: {product.name} - {product.price} руб.')

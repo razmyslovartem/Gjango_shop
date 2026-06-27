@@ -1,7 +1,8 @@
-  # config/settings.py
+# config/settings.py
 
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Загружаем переменные окружения из файла .env
@@ -15,12 +16,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.getenv('DEBUG') == "True" else False
+DEBUG = True if os.getenv("DEBUG") == "True" else False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -72,13 +73,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # тип СУБД
-        'NAME': os.getenv('DB_NAME'),  # имя базы данных
-        'USER': os.getenv('DB_USER'),  # имя пользователя PostgreSQL
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # пароль пользователя PostgreSQL
-        'HOST': os.getenv('DB_HOST'),  # адрес сервера базы данных
-        'PORT': os.getenv('DB_PORT', default='5432'),  # порт, на котором работает PostgreSQL, обычно 5432
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",  # тип СУБД
+        "NAME": os.getenv("DB_NAME"),  # имя базы данных
+        "USER": os.getenv("DB_USER"),  # имя пользователя
+        "PASSWORD": os.getenv("DB_PASSWORD"),  # пароль пользователя
+        "HOST": os.getenv("DB_HOST"),  # адрес сервера базы данных
+        "PORT": os.getenv("DB_PORT", default="5432"),  # порт, на котором работает PostgreSQL
     }
 }
 

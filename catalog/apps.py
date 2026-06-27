@@ -1,4 +1,4 @@
-  # catalog/apps.py
+# catalog/apps.py
 from django.apps import AppConfig
 
 

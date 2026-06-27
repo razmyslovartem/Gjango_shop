@@ -1,9 +1,8 @@
-  # catalog/views.py
-from django.shortcuts import render
+# catalog/views.py
+from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def home(request):
@@ -12,6 +11,7 @@ def home(request):
 
 def contacts(request):
     return render(request, "catalog/contacts.html")
+
 
 def contact(request):
     if request.method == "POST":

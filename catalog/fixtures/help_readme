@@ -1,0 +1,13 @@
+# 1. Создать фикстуры из текущих данных
+python manage.py dumpdata catalog.Category --indent=4 > catalog/fixtures/category_fixture.json
+python manage.py dumpdata catalog.Product --indent=4 > catalog/fixtures/product_fixture.json
+
+# 2. Загрузить фикстуры
+python manage.py loaddata category_fixture.json product_fixture.json
+
+# 3. Использовать кастомную команду
+python manage.py add_products
+
+# 4. Загрузить фикстуру с автоматической очисткой
+python manage.py flush  # Очищает БД
+python manage.py loaddata catalog/fixtures/*.json  # Загружает фикстуры

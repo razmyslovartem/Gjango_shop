@@ -5,10 +5,13 @@ description = ""
 authors = [
     {name = "Artem Razmyslov",email = "89083284426@mail.ru"}
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
-    "django (>=6.0.6,<7.0.0)",
-    "django-bootstrap5 (>=26.2,<27.0)"
+    "django (>=5.1,<5.2)",
+    "django-bootstrap5 (>=26.2,<27.0)",
+    "psycopg2-binary (>=2.9.12,<3.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)",
+    "pillow (>=12.2.0,<13.0.0)",
 ]
 
 
@@ -24,12 +27,13 @@ dev = [
     "black (>=26.5.1,<27.0.0)",
     "mypy (>=2.1.0,<3.0.0)",
     "flake8 (>=7.3.0,<8.0.0)",
-    "isort (>=8.0.1,<9.0.0)"
+    "isort (>=8.0.1,<9.0.0)",
+    "ipython (>=9.14.1,<10.0.0)"
 ]
 
 [tool.black]
 line-length = 119
-target-version = ['py314']
+target-version = ['py313']
 extend-exclude = '''
 /(
     \.git
@@ -43,18 +47,6 @@ extend-exclude = '''
   | \.pytest_cache
 )/
 '''
-
-[tool.flake8]
-max-line-length = 119
-exclude = [
-    ".venv",
-    "__pycache__",
-    ".git",
-    ".pytest_cache",
-    ".mypy_cache",
-    "htmlcov",
-    "*.pyc"
-]
 
 [tool.isort]
 profile = "black"
@@ -80,7 +72,7 @@ known_first_party = ["homework"]
 src_paths = ["src", "test"]
 
 [tool.mypy]
-python_version = "3.14"
+python_version = "3.13"
 show_error_codes = true
 ignore_missing_imports = true
 disallow_incomplete_defs = true

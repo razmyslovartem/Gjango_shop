@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Category(models.Model):
-    """Модель категории товаров."""
+    """Класс модели категории товаров."""
 
     name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.TextField(default="Описание отсутствует", verbose_name="Описание категории")
@@ -21,7 +21,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    """Модель товаров."""
+    """Класс модели товаров."""
 
     name = models.CharField(max_length=200, verbose_name="Наименование")
     description = models.TextField(default="Описание отсутствует", verbose_name="Описание товара")
@@ -30,6 +30,7 @@ class Product(models.Model):
         blank=True,  # Необязательное в формах Django
         null=True,  # Может быть NULL в БД PostgreSQL
         verbose_name="Изображение",
+        help_text="Загрузи фото товара",
     )
     category = models.ForeignKey(
         Category,  # Связь с моделью Category.

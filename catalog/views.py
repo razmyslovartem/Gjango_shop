@@ -1,3 +1,4 @@
+# catalog/views.py
 from catalog.models import Product
 
 from django.http import HttpResponse

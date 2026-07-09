@@ -215,3 +215,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+*.pyc
+*.pyo
+
+# Медиафайлы (загрузки пользователей)
+#media/  # обычно картинки не заносят на гит флоу.
+
+# Собранная статика
+staticfiles/

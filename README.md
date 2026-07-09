@@ -3,29 +3,33 @@
 Проект интернет-магазина на Django.
 
 ## Технологии
-- Python 3.14
-- Django 6.06
+- Python 3.13
+- Django 5.1
 - Poetry (управление зависимостями)
-- Bootstrap 5 (вёрстка)
+- Bootstrap 5 (frontend)
 - PostgreSQL (база данных)
+- Pillow (обработка изображений)
 
 ## Установка
 
 ```bash
-# Клонирование
+# Клонирование репозитория
 git clone <url>
 cd Gjango-shop
 
-# Установка зависимостей
+# Установка зависимостей через Poetry
 poetry install
 
-# Активация окружения
+# Активация виртуального окружения
 poetry shell
 
 # Миграции БД
 poetry run python manage.py migrate
 
-# Запуск сервера
+# Создание суперпользователя для админки
+poetry run python manage.py createsuperuser
+
+# Запуск сервера разработки
 poetry run python manage.py runserver
 ```
 

@@ -1,11 +1,14 @@
 # blog/views.py
 
+from blog.models import BlogPost
 from django.conf import settings
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-
-from blog.models import BlogPost
+from django.views.generic import CreateView
+from django.views.generic import DeleteView
+from django.views.generic import DetailView
+from django.views.generic import ListView
+from django.views.generic import UpdateView
 
 
 # Read - весь список.

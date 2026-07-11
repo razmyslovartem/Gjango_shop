@@ -1,9 +1,10 @@
 # catalog/views.py
 
-from django.views.generic import DetailView, ListView, TemplateView
-
 from blog.models import BlogPost
 from catalog.models import Product
+from django.views.generic import DetailView
+from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 
 class ProductListView(ListView):

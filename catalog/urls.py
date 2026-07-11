@@ -1,7 +1,9 @@
 # catalog/urls.py
 from django.urls import path
 
-from .views import ContactTemplateView, ProductDetailView, ProductListView
+from .views import ContactTemplateView
+from .views import ProductDetailView
+from .views import ProductListView
 
 # Задаем пространство имен в файле маршрутизации приложения.
 app_name = "catalog"

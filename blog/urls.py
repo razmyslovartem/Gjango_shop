@@ -2,7 +2,11 @@
 
 from django.urls import path
 
-from .views import BlogPostCreateView, BlogPostDeleteView, BlogPostDetailView, BlogPostListView, BlogPostUpdateView
+from .views import BlogPostCreateView
+from .views import BlogPostDeleteView
+from .views import BlogPostDetailView
+from .views import BlogPostListView
+from .views import BlogPostUpdateView
 
 app_name = "blog"
 

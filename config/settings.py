@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     # Мои приложения.
     "django_bootstrap5",  # Стили по CDN.
     "django_extensions",  # Библиотека  django-extensions
-    "catalog",  # Приложение
+    "catalog",  # Приложение 1
+    "blog",  # Приложение 1
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,16 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Настройки почты (для разработки - вывод в консоль)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@djangoshop.ru"
+
+# Для реальной отправки (например, через Gmail):
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-app-password'
+# DEFAULT_FROM_EMAIL = 'your-email@gmail.com'

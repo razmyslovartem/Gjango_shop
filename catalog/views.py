@@ -1,39 +1,35 @@
 # catalog/views.py
+
+from blog.models import BlogPost
 from catalog.models import Product
-
-from django.http import HttpResponse
-
-from django.shortcuts import get_object_or_404, render
-
-
-def home(request):
-    return render(request, "home.html")
+from django.views.generic import DetailView
+from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 
-def contacts(request):
-    return render(request, "catalog/contacts.html")
+class ProductListView(ListView):
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавляем последнюю опубликованную статью
+        context["latest_post"] = BlogPost.objects.filter(is_published=True).order_by("-created_at").first()
+        return context
 
 
-def contact(request):
-    if request.method == "POST":
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ContactTemplateView(TemplateView):
+    template_name = "catalog/contacts.html"
+
+    def post(self, request, *args, **kwargs):
         name = request.POST.get("name")
         phone = request.POST.get("phone")
         message = request.POST.get("message")
 
-        return HttpResponse(f"Спасибо, {name} ваш номер:{phone} и сообщение:{message} отправлены!")
-    return render(request, "catalog/contacts.html")
+        print(f"Имя: {name}, Телефон: {phone}, Сообщение: {message}")
 
-
-def catalog_list(request):
-    """Вывод всех карточек продукта."""
-    products = Product.objects.all()  # Все карточки товаров.
-    context = {"products": products}  # Контекстный словарь для передачи данных в шаблон.
-    return render(request, "products_list.html", context)
-
-
-def catalog_detail(request, pk):
-    """Детальная страница товара."""
-    # .get_object_or_404 безопаснее и правильнее, чем .get().
-    product = get_object_or_404(Product, id=pk)  # Запрос в БД.
-    context = {"product": product}
-    return render(request, "product_detail.html", context)
+        context = self.get_context_data(success=True, name=name, phone=phone, message=message)
+        return self.render_to_response(context)

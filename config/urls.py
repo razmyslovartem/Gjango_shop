@@ -8,7 +8,8 @@ from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("catalog.urls", namespace="catalog")),  # Подключаем пространство имён.
+    path("", include("catalog.urls")),  # Подключаем пространство имён.
+    path("blog/", include("blog.urls")),  # Подключаем пространство имён.
 ]
 
 if settings.DEBUG:

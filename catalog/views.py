@@ -1,11 +1,16 @@
 # catalog/views.py
 
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, FormView, ListView, UpdateView
-
 from blog.models import BlogPost
-from catalog.forms import ContactForm, ProductForm
+from catalog.forms import ContactForm
+from catalog.forms import ProductForm
 from catalog.models import Product
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.views.generic import DeleteView
+from django.views.generic import DetailView
+from django.views.generic import FormView
+from django.views.generic import ListView
+from django.views.generic import UpdateView
 
 
 # Create - создание продукта.

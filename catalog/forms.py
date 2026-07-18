@@ -1,9 +1,10 @@
 # catalog/forms.py
 
-from django import forms
-
 from catalog.models import Product
-from catalog.validators import validate_image, validate_price, validate_stop_words
+from catalog.validators import validate_image
+from catalog.validators import validate_price
+from catalog.validators import validate_stop_words
+from django import forms
 
 
 class ProductForm(forms.ModelForm):

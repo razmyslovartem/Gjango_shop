@@ -34,9 +34,9 @@ def validate_stop_words(value):
 def validate_price(check_price):
     """Проверка цены - что она не отрицательная."""
     if check_price < 0:
-        raise ValidationError("Отрицательная цена? Это не благотворительность!")
+        raise ValidationError("Цена продукта не может быть отрицательной!")
     elif check_price == 0:
-        raise ValidationError("Бесплатно не отдаём, введите реальную цену!")
+        raise ValidationError("Цена продукта не может быть равна нулю!")
 
 
 # Валидатор для поля img.

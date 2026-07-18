@@ -32,7 +32,7 @@
                             <span class="fw-bold text-primary fs-5">{{ product.price }} ₽</span>
                             <!-- Кнопка для перехода к конкретной карточке товара.-->
                             <div class="btn-group">
-                                <a href="{% url 'catalog:catalog_detail' product.pk %}" class="btn btn-sm btn-outline-primary">Смотреть</a>
+                                <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-sm btn-outline-primary">Смотреть</a>
                             </div>
                         </div>
                     </div>

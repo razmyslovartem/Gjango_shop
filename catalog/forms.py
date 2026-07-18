@@ -11,7 +11,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ["name", "details", "img", "category", "price"]
+        fields = ["name", "description", "image", "category", "price"]
         # Задание №3 добавление стилей, в учебных целях
         # выполнил через построчное применение к каждому полю
         # для гибкой работы по настройке стилей в дальнейшем.
@@ -53,7 +53,7 @@ class ProductForm(forms.ModelForm):
         return check_price
 
     def clean_img(self):
-        """Валидация поля img."""
+        """Валидация поля image"""
         img = self.cleaned_data.get("img")
         # Проверка что изображение загружено.
         if img:

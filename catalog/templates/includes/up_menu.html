@@ -12,7 +12,7 @@
                 <ul class="list-unstyled">
                     <li><a href="{% url 'catalog:product_list' %}" class="text-white">Главная</a></li>
                     <li><a href="{% url 'catalog:contacts' %}" class="text-white">Контакты</a></li>
-                    <li><a href="{% url 'blog:list' %}" class="text-white">Блог></a></li>
+                    <li><a href="{% url 'blog:list' %}" class="text-white">Блог</a></li>
                     <li><a href="{% url 'admin:index' %}" class="text-white">Админ-панель</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'admin:logout' %}" class="text-white">Выход</a></li>

@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     "django_bootstrap5",  # Стили по CDN.
     "django_extensions",  # Библиотека  django-extensions
     "catalog",  # Приложение 1
-    "blog",  # Приложение 1
+    "blog",  # Приложение 2
+    "users",  # Приложение 3
 ]
 
 MIDDLEWARE = [

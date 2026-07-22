@@ -59,7 +59,6 @@ class Product(models.Model):
         blank=True,
     )
 
-
     def __str__(self):
         """Строковое представление объекта (для админки, shell)."""
         return self.name

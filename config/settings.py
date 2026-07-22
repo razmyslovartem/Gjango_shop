@@ -132,14 +132,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # DEFAULT_FROM_EMAIL = "noreply@djangoshop.ru"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# Вариант Console backend (письма будут выводиться в терминал)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Для реальной отправки:
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = "smtp.yandex.ru"  # Хост Яндекса
+EMAIL_PORT = 465  # Для SSL
+EMAIL_USE_SSL = True  # Для SSL
+EMAIL_USE_TLS = False  # При SSL TLS не используется
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Ваш реальный логин
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # Пароль от почты или пароль приложения
 
 LOGIN_URL = "users:login"
 # Редирект для перенаправлений после входа и выхода.

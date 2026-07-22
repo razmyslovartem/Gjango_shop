@@ -8,7 +8,13 @@
                 <span class="me-3 text-muted">
                     Вы вошли как <strong>{{ user.email }}</strong>
                 </span>
-                <a href="{% url 'users:logout' %}" class="btn btn-outline-secondary btn-sm">Выйти</a>
+                <!-- ЗАМЕНЯЕМ ССЫЛКУ ВЫХОДА НА ФОРМУ С POST-запросом -->
+                <form action="{% url 'users:logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                        Выйти
+                    </button>
+                </form>
             {% else %}
                 <a href="{% url 'users:login' %}" class="btn btn-primary btn-sm">Войти</a>
             {% endif %}
@@ -19,20 +25,16 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-
-            <h1 class="fw-light">Интернет-магазин на Gjango</h1>
-
+            <h1 class="fw-light">Интернет-магазин на Django</h1>
             <p class="lead text-body-secondary">
                 Здесь продаются товары различных категорий!
                 Покупайте вещи дешево и без наценки!
             </p>
-
             <p>
                 <a href="{% url 'catalog:product_list' %}" class="btn btn-primary my-2">Главная</a>
                 <a href="{% url 'blog:list' %}" class="btn btn-success my-2">Блог</a>
                 <a href="{% url 'catalog:contacts' %}" class="btn btn-secondary my-2">Отзыв</a>
             </p>
-
         </div>
     </div>
 </section>

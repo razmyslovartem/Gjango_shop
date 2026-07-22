@@ -32,8 +32,8 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 
 def get_success_url(self):
-        """Редирект на страницу созданного продукта."""
-        return reverse_lazy("catalog:product_detail", kwargs={"pk": self.object.pk})
+    """Редирект на страницу созданного продукта."""
+    return reverse_lazy("catalog:product_detail", kwargs={"pk": self.object.pk})
 
 
 # Read - весь список.

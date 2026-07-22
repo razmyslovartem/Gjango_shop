@@ -2,7 +2,10 @@
 
 from django.urls import path
 
-from .views import UserLoginView, UserLogoutView, UserRegisterView, email_verification
+from .views import UserLoginView
+from .views import UserLogoutView
+from .views import UserRegisterView
+from .views import email_verification
 
 app_name = "users"
 

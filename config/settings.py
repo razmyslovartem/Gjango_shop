@@ -36,8 +36,11 @@ INSTALLED_APPS = [
     "django_bootstrap5",  # Стили по CDN.
     "django_extensions",  # Библиотека  django-extensions
     "catalog",  # Приложение 1
-    "blog",  # Приложение 1
+    "blog",  # Приложение 2
+    "users",  # Приложение 3
 ]
+
+AUTH_USER_MODEL = "users.User"  # Django для авторизации используй эту модель.
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -125,14 +128,22 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Настройки почты (для разработки - вывод в консоль)
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@djangoshop.ru"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# DEFAULT_FROM_EMAIL = "noreply@djangoshop.ru"
 
-# Для реальной отправки (например, через Gmail):
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-app-password'
-# DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# Вариант Console backend (письма будут выводиться в терминал)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Для реальной отправки:
+EMAIL_HOST = "smtp.yandex.ru"  # Хост Яндекса
+EMAIL_PORT = 465  # Для SSL
+EMAIL_USE_SSL = True  # Для SSL
+EMAIL_USE_TLS = False  # При SSL TLS не используется
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Ваш реальный логин
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # Пароль от почты или пароль приложения
+
+LOGIN_URL = "users:login"
+# Редирект для перенаправлений после входа и выхода.
+LOGIN_REDIRECT_URL = "catalog:product_list"
+LOGOUT_REDIRECT_URL = "catalog:product_list"

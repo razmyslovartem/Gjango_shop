@@ -143,6 +143,9 @@ EMAIL_USE_TLS = False  # При SSL TLS не используется
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # Ваш реальный логин
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # Пароль от почты или пароль приложения
 
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 LOGIN_URL = "users:login"
 # Редирект для перенаправлений после входа и выхода.
 LOGIN_REDIRECT_URL = "catalog:product_list"

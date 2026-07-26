@@ -1,6 +1,4 @@
 # catalog/views.py
-from django.core.exceptions import PermissionDenied
-
 from blog.models import BlogPost
 from catalog.forms import ContactForm
 from catalog.forms import ProductForm
@@ -8,7 +6,9 @@ from catalog.models import Product
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView
@@ -35,7 +35,6 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-
     def get_success_url(self):
         """Редирект на страницу созданного продукта."""
         return reverse_lazy("catalog:product_detail", kwargs={"pk": self.object.pk})
@@ -60,6 +59,7 @@ class ProductDetailView(DetailView):
 
     def get_queryset(self):
         return Product.objects.filter(is_published=True)
+
 
 # Update - редактирование продукта.
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

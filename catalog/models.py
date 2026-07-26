@@ -44,9 +44,7 @@ class Product(models.Model):
         decimal_places=2,  # Цифр после запятой (копейки).
         verbose_name="Цена за покупку",
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Дата создания"  # Автоматически при создании.
-    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")  # Автоматически при создании.
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата последнего изменения"  # Автоматически при каждом сохранении.
     )

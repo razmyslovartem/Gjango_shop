@@ -29,6 +29,7 @@ class ProductAdmin(admin.ModelAdmin):
         "name",
         "price",
         "category",
+        "is_published",
     )  # Выводим id, name, price, category в списке
     list_filter = ("category",)  # Фильтрация продуктов по категории
     search_fields = (

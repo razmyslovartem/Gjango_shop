@@ -12,20 +12,21 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ["name", "description", "image", "category", "price"]
+        fields = ["name", "description", "image", "category", "price", "is_published"]
         # Задание №3 добавление стилей, в учебных целях
         # выполнил через построчное применение к каждому полю
         # для гибкой работы по настройке стилей в дальнейшем.
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Введите название продукта"}),
-            "details": forms.Textarea(
+            "description": forms.Textarea(
                 attrs={"class": "form-control", "rows": 5, "placeholder": "Введите описание продукта"}
             ),
-            "img": forms.FileInput(attrs={"class": "form-control", "accept": "image/*"}),
+            "image": forms.FileInput(attrs={"class": "form-control", "accept": "image/*"}),
             "category": forms.Select(attrs={"class": "form-control"}),
             "price": forms.NumberInput(
                 attrs={"class": "form-control", "step": "0.01", "min": "0.01", "placeholder": "0.00"}
             ),
+            "is_published": forms.CheckboxInput(attrs={"class": "form-check-input"}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -41,8 +42,8 @@ class ProductForm(forms.ModelForm):
         name = self.cleaned_data.get("name")
         return validate_stop_words(name)
 
-    def clean_details(self):
-        """Валидация поля details."""
+    def clean_description(self):
+        """Валидация поля description."""
         details = self.cleaned_data.get("details")
         return validate_stop_words(details)
 
@@ -53,9 +54,9 @@ class ProductForm(forms.ModelForm):
             validate_price(check_price)
         return check_price
 
-    def clean_img(self):
+    def clean_image(self):
         """Валидация поля image"""
-        img = self.cleaned_data.get("img")
+        img = self.cleaned_data.get("image")
         # Проверка что изображение загружено.
         if img:
             validate_image(img)

@@ -2,6 +2,10 @@
 from blog.models import BlogPost
 from catalog.forms import ContactForm
 from catalog.forms import ProductForm
+from catalog.models import Category
+from catalog.models import Product
+from catalog.services import get_product_list_from_cache
+from catalog.services import get_products_by_category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -19,8 +23,6 @@ from django.views.generic import DetailView
 from django.views.generic import FormView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
-from catalog.models import Category, Product
-from catalog.services import get_product_list_from_cache, get_products_by_category
 
 
 # Create - создание продукта.
@@ -104,6 +106,7 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         cache.delete("product_list_all")
         return response
 
+
 # Delete - удаление продукта.
 class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # Модель, с которой работает представление — Product.
@@ -170,10 +173,12 @@ class ProductUnpublishView(LoginRequiredMixin, PermissionRequiredMixin, View):
         product.save()
         return redirect("catalog:product_detail", pk=product.pk)
 
+
 class CategorySelectView(ListView):
     """
     Страница с выпадающим списком категорий и товарами выбранной категории.
     """
+
     model = Product
     template_name = "catalog/category_select.html"
     context_object_name = "products"

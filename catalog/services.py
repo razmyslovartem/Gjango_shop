@@ -1,8 +1,7 @@
 # catalog/services.py
+from catalog.models import Product
 from django.conf import settings
 from django.core.cache import cache
-
-from catalog.models import Product
 
 
 def get_products_by_category(category_id: int):

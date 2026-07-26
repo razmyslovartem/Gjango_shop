@@ -44,7 +44,9 @@ class Product(models.Model):
         decimal_places=2,  # Цифр после запятой (копейки).
         verbose_name="Цена за покупку",
     )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")  # Автоматически при создании.
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Дата создания"  # Автоматически при создании.
+    )
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата последнего изменения"  # Автоматически при каждом сохранении.
     )
@@ -59,6 +61,11 @@ class Product(models.Model):
         blank=True,
     )
 
+    is_published = models.BooleanField(
+        default=False,
+        verbose_name="Опубликовано",
+    )
+
     def __str__(self):
         """Строковое представление объекта (для админки, shell)."""
         return self.name
@@ -69,3 +76,8 @@ class Product(models.Model):
         verbose_name = "продукт"  # Имя в единственном числе.
         verbose_name_plural = "продукты"  # Имя во множественном числе.
         ordering = ["-created_at"]  # Сортировка от новых к старым.
+
+        # Добавим кастомное право изменять поле публикации.
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
+        ]

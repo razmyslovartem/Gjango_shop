@@ -150,3 +150,13 @@ LOGIN_URL = "users:login"
 # Редирект для перенаправлений после входа и выхода.
 LOGIN_REDIRECT_URL = "catalog:product_list"
 LOGOUT_REDIRECT_URL = "catalog:product_list"
+
+# Настройки кэша для redis.
+CACHE_ENABLED = True
+if CACHE_ENABLED:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': os.getenv("LOCATION"),  # если Redis поменяет порт
+        }
+    }
